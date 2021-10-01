@@ -35,6 +35,7 @@ The attendance web app must meet the following reuqirements:
     - Feedback to employee on successful/failed registration
 
 ## Requerimientos no-funcionales
+
 - Calidad
   - Utilizar estilo de código definido por la comunidad (apoyarse en Rubocop)
   - Pruebas unitarias
@@ -48,23 +49,64 @@ The attendance web app must meet the following reuqirements:
   - CSS: libertad para utilizar cuaquier framework o librería, preferentemente SASS
     - Por ejemplo puedes utilizar Bootsrap junto con [bootstrap_form](https://github.com/bootstrap-ruby/bootstrap_form) para tus formularios
 
+## Procesos para realizar una correcta ejecución.
+
+_Este proyecto cuenta con una serie de procesos necesarios para realizar una ejecución correcta._
+
+### Configuracion de las variables de entorno.
+
+_Crear un archivo .env el cual contenga los datos correspondientes a tu base de datos_
+
+### Creacion de la base de datos.
+
+_EJecutar el comando:_
+
+```
+rails db:create
+```
+
+### Instalación de las gemas mediante el uso de Bundle.
+
+_EJecutar el comando:_
+
+```
+bundle install
+```
+
+### Instalación de las dependencias necesarias.
+
+_EJecutar el comando:_
+
+```
+yarn
+```
+
+### Ejecución del webpack.
+
+_EJecutar el comando:_
+
+```
+./bin/webpack-dev-server
+```
+
+### Ejecución del servidor de Rails.
+
+_EJecutar el comando:_
+
+```
+rails s
+```
+
 ## Tecnologías
-- Ruby on Rails en el backend
-- PostgreSQL como base de datos principal
-- CSS: libertad para utilizar cuaquier framework o librería, preferentemente SASS
-  - Por ejemplo puedes utilizar Bootsrap y junto con [bootstrap_form](https://github.com/bootstrap-ruby/bootstrap_form) para tus formularios
-- Javascript: libertad para utilizar cualquier framework o librería, preferentemente sin jQuery
-- Framework para pruebas [Rspec](https://rspec.info/) ó [Minitest](https://github.com/seattlerb/minitest)
 
-## Entregable
-- Código fuente en Github 
-  - Debe incluir README con información sobre como configurar el proyecto
-  - Los commits de Git deben ser significativos
-- Demo de la App correndo en heroku o similar
-- Libertad para utilizar cualquier diseño, imágenes, etc, que considere necesarios y apropiados
-
-## Setup
-En [este elnace](setup/README.md) se describen los pasos necesarios para ejecutar/probar este proyecto, así como los integrantes de este equipo
-
-## Enlaces
-[Encuentra aquí una lista completa de recursos de ayuda](https://github.com/bright-coders/commons/tree/master/topics/resources)
+| Tecnologías   | Description                                                                                     | Version |
+| ------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| Ruby          | Lenguaje de programación aplicado para la lógica del lado del backend.                          | 3.0.0   |
+| Ruby on Rails | Framework basado en Ruby para la estrucutra del apartado del backend.                           | 6.1.4.1 |
+| PostgreSQL    | Show file differences that haven't been staged                                                  | 1.2.3   |
+| Sass          | Implementado para la generación de estilos.                                                     | 6.0.0   |
+| React.js      | Libreria basada en javascript implementada en el apartado del frontend.                         | 2.6.1   |
+| Javascript    | Lenguaje de programación aplicado para la lógica del lado del frontend.                         | ES6     |
+| Rspec         | Herramienta implementada para el desarrollo de pruebas unitarias y automatización.              | 5.0.2   |
+| Rubycritic    | Herramienta que nos proporciona un informe de calidad del código Ruby.                          | 4.6.1   |
+| Rubocop       | Herramienta encargada para cumplir con varias de las directrices que de la Guía de Estilo Ruby. | 1.22.0  |
