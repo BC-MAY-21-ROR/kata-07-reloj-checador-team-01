@@ -36,6 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use rubocop as the app server
   gem 'rubocop', require: false
+  gem 'rubycritic', require: false
 end
 
 group :development do
