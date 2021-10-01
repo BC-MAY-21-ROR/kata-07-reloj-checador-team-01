@@ -6,6 +6,7 @@
     "@rails/actioncable": "latest",
     "@rails/activestorage": "latest",
     "@rails/webpacker": "^6.0.0-rc.5",
+    "@tailwindcss/forms": "^0.3.4",
     "autoprefixer": "^10.3.6",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -23,6 +24,7 @@
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.3.0",
+    "tailwindcss": "^2.2.16",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   },
