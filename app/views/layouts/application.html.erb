@@ -10,7 +10,11 @@
   </head>
   <body class="flex flex-col h-screen justify-between">
     <%= render 'layouts/partials/header' %>
-      <main class="mb-auto">
+      <div class="container bg-red-200 text-red-800 text-center">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+      </div>
+      <main class="container mx-auto w-8/12 mb-auto mt-5">
        <%= yield %>
       </main>
     <%= render 'layouts/partials/footer' %>
