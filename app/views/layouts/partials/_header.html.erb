@@ -1,17 +1,14 @@
 <header>
-  <div class="sm:container mx-auto mt-5">
-    <div class="w-8/12 mx-auto text-center border-b border-blue-500 pb-3 flex justify-between">
+  <div class="container bg-gray-900 max-w-full">
+    <div class="w-10/12 mx-auto text-center pt-3 pb-3 flex justify-between max-w-screen-lg">
       <%= link_to root_path, class: 'text-2xl text-blue-500' do %>
-        <h1 class="text-2xl text-blue-500">Check-in App</h1>
+        <%= render_svg 'check-mobile', styles:'w-36' %>
       <% end %>
       <% if user_signed_in? %>
-       
-        <%= button_to "Logout", destroy_user_session_path, method: :delete, class:'p-3 outline-none focus:outline-none border  bg-white text-red-500 cursor-pointer border-red-300 hover:bg-red-300 hover:text-white transition duration-200 ease-in-out'  %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class:'p-3 outline-none focus:outline-none border  bg-transparent text-red-300 cursor-pointer border-red-300 hover:bg-red-300 hover:text-white transition duration-200 ease-in-out'  %>
       <% else %>
-         <%= link_to 'Login', new_user_session_path, class: 'p-3 border outline-none focus:outline-none bg-white text-blue-300 border-blue-300 hover:bg-blue-300 hover:text-white transition duration-200 ease-in-out', method: 'delete', confirm: 'Sure?', type:'submit' %>
+         <%= link_to 'Login', new_user_session_path, class: 'p-3 border outline-none focus:outline-none bg-transparent text-blue-300 border-blue-300 hover:bg-blue-300 hover:text-white transition duration-200 ease-in-out', method: 'delete', confirm: 'Sure?', type:'submit' %>
       <% end %>
-     
-      
     </div>
   </div>
 </header>

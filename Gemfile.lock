@@ -124,6 +124,9 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
+    inline_svg (1.7.2)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     kwalify (0.7.2)
@@ -330,6 +333,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   dotenv-rails
+  inline_svg
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg

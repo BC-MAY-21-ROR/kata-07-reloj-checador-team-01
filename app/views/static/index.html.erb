@@ -1,6 +1,20 @@
-<div class="sm:container mx-auto mt-5">
-  <div class="w-6/12 mx-auto text-center pb-3 shadow my-5 p-5">
-    <span class="font-bold">React component example: </span> 
-    <%= react_component("App", { greeting: "Hello" }) %>
+<div class="sm:container mx-auto mt-5 flex flex-col md:flex-row-reverse md:justify-around md:items-center	md:flex">
+
+  <div class="md:flex md:flex-col md:w-2/5">
+    <div class="flex flex-col justify-center items-center md:h-32 md:bg-gray-900 md:rounded-md md:flex-row md:p-4">
+      <%= render_svg 'clock', styles:'text-blue-400 h-24 w-24' %>
+      <div class=" flex flex-col justify-center md:text-white md:flex-col-reverse md:ml-2.5">
+        <span class="text-4xl"><%=Time.now.strftime("%H:%M") %> </span>
+        <span> <%=Time.now.strftime("%A") %> </span>
+      </div>
+    </div>
+
+    <div class="flex justify-center pt-4 md:block md:flex md:justify-center md:items-center md:bg-gray-900 md:h-32 md:mt-6 md:rounded-md md:p-4">
+      <%= render_svg 'check-mobile', styles:'w-96' %>
+    </div>
+  </div>
+
+  <div class=" w-12/12 text-center pb-3 my-5 md:bg-gray-900 md:flex md:items-center md:justify-center md:w-2/4 md:h-72 md:rounded-md md:my-0 md:p-6">
+    <%= react_component("App", { authenticity_token: form_authenticity_token  }) %>
   </div>
 </div>
