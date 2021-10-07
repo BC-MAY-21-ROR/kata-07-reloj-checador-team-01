@@ -1,0 +1,7 @@
+<div class="w-screen mx-auto text-black">
+  <% flash.each do |name, msg| %>
+    <div class="p-5 w-full text-center <%= name == "notice" ? "notice bg-blue-20 text-blue-800" : "alert p-5 bg-red-200 text-red-800" %>">
+        <%= content_tag :div, msg %>
+    </div>
+  <% end %>
+</div>

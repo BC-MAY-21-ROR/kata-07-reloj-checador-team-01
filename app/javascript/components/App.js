@@ -1,16 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
-class App extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
-        Greeting: {this.props.greeting}
-      </React.Fragment>
-    );
-  }
+import Checkin from "./CheckIn";
+
+const App = () => {
+  const authenticity_token = "";
+  return (
+    <>
+      <Checkin authenticity_token={authenticity_token} />
+    </>
+  );
 }
 
 App.propTypes = {
-  greeting: PropTypes.string
+  authenticity_token: PropTypes.string.isRequired
 };
 export default App;
