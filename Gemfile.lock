@@ -153,6 +153,8 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.21.0)
+    paranoia (2.4.3)
+      activerecord (>= 4.0, < 6.2)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
@@ -338,6 +340,7 @@ DEPENDENCIES
   inline_svg
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  paranoia
   pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
