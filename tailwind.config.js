@@ -240,6 +240,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'Oswald',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
