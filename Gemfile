@@ -25,6 +25,7 @@ gem 'react-rails', '~> 2.6', '>= 2.6.1'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'inline_svg'
 
+gem 'paranoia'
 gem 'cancancan' 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
