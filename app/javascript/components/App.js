@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Checkin from "./CheckIn";
+import Checkin from "./CheckIn/CheckIn"
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   const authenticity_token = "";

@@ -11,6 +11,7 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "css-loader": "^6.3.0",
+    "formik": "^2.2.9",
     "mini-css-extract-plugin": "^2.3.0",
     "postcss": "^8.3.8",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -20,13 +21,15 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-toastify": "^8.0.3",
     "react_ujs": "^2.6.1",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.3.0",
     "tailwindcss": "^2.2.16",
     "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0"
+    "webpack-cli": "^4.8.0",
+    "yup": "^0.32.10"
   },
   "version": "0.1.0",
   "babel": {

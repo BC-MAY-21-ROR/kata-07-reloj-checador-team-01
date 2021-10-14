@@ -13,9 +13,7 @@
     <%= render 'layouts/partials/header' %>
     <%= render 'layouts/partials/alerts' %>
 
-    <main class="container mx-auto w-8/12 max-w-screen-lg m-auto md:m-auto">
-      <%= yield %>
-    </main>
+    <%= content_for?(:content) ? yield(:content) : yield %>
 
     <%= render 'layouts/partials/footer' %>
   </body>
