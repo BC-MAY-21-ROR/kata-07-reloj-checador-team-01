@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :employees
   resources :companies
   #For skipping the logic registration to users
   devise_for :users, :skip => [:registrations] 
