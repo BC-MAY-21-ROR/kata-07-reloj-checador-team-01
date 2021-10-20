@@ -1,0 +1,13 @@
+<div class="container w-8/12  mx-auto max-w-screen-lg m-auto md:m-auto flex py-10 flex-col">
+  <div class="w-5/5 text-center py-10">
+    <%= yield :title %>
+  </div>
+  <div class="flex w-full">
+    <div class="w-4/5">
+      <%= yield :primary_content %>
+    </div>
+    <div class="w-1/5 text-center flex">
+      <%= yield :actions %>
+    </div>
+  </div>
+</div>
