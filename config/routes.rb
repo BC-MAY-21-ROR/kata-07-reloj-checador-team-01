@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :employees
+  resources :attendances
   resources :companies
   #For skipping the logic registration to users
-  devise_for :users, :skip => [:registrations] 
+  devise_for :users, :skip => [:registrations]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   #allow edit and update information fo users
   as :user do
