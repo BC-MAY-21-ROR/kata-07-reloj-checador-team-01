@@ -1,4 +1,4 @@
-<%= form_with(model: company) do |form| %>
+<%= form_with(model: company,class:"w-full") do |form| %>
   <% if company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -11,18 +11,26 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field text-lg md:text-2xl">
+    <p class="my-2"><%= form.label :name %></p>
+    <%= form.text_field :name, autofocus: true, 
+      class: "h-10 mb-2 md:text-xl md:h-14 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline shadow appearance-none border text-center rounded",
+      placeholder: "Name"
+    %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="field text-lg md:text-2xl">
+    <p class="my-2"><%= form.label :address %></p>
+    <%= form.text_field :address, autofocus: true,
+      class: "h-10 md:text-xl md:h-14 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline shadow appearance-none border text-center rounded",
+      placeholder: "Address"
+    %>
   </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions my-4">
+    <%= form.submit "Submit",
+        class: " h-10 md:h-14 flex-shrink-0 bg-gray-900 hover:bg-gray-600 border-teal-500 hover:border-teal-700 text-sm md:text-xl w-full text-white py-1 px-2 rounded"
+    %>
   </div>
 <% end %>

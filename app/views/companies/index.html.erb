@@ -1,29 +1,30 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Companies</h1>
+  <div class="flex justify-center">
+    <div class="appearance-none rounded w-full py-4 md:py-16 px-9 md:px-48 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex flex-col items-center">
+      <div class="font-sans font-semibold text-center m-6 md:m-2 text-2xl md:text-4xl md:pb-8">
+        <h2>COMPANIES</h2>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <% @companies.each do |company| %>
+        <div class="flex w-full justify-center ">
+          <div class="flex-col mr-2 w-full md:w-1/2 mb-2 items-center text-m md:text-xl">
+            <div class="border border-teal-700 rounded text-center mb-2 md:flex md:h-10 md:items-center md:justify-center">
+              <%= company.name %>
+            </div>
+            <div class="border mb-4 md:mb-8 border-teal-700 rounded text-center md:flex md:h-10 md:items-center md:justify-center">
+              <%= company.address %>
+            </div>
+          </div>
+          <div class="flex w-12 h-8 md:h-12 mt-2 md:mt-4 ml-2 bg-gray-900 justify-center items-center rounded mb-2 text-white py-3 px-6 text-center">
+            <%= link_to render_svg('pencil-edit', styles:'text-white w-4 md:w-6'), edit_company_path(company) %>
+          </div>
+        </div>
+      <% end %>
 
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.address %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= button_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <br>
 
-<br>
+      <%= link_to 'New Company', new_company_path, class:"  mt-2 text-center h-10 pt-2 md:h-14 flex-shrink-0 bg-gray-900 hover:bg-gray-600 border-teal-500 hover:border-teal-700 text-sm md:text-xl w-full md:w-1/2 text-white py-1 px-2 rounded" %>
+    </div>
+  </div>
 
-<%= link_to 'New Company', new_company_path %>
+<%=render 'full_layout'%>
