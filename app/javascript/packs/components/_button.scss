@@ -1,0 +1,26 @@
+.btn {
+  @apply cursor-pointer transition duration-300;
+  &__primary {
+    @apply bg-gray-900 flex-shrink-0 h-12 text-white px-5 rounded flex items-center justify-center mx-1;
+    &:hover {
+      @apply bg-gray-600;
+    }
+  }
+  &__secondary {
+    @apply bg-white border text-gray-900 border-gray-900 flex-shrink-0 h-12 text-white px-5 rounded flex items-center justify-center mx-1;
+    &:hover {
+      @apply bg-gray-900 text-white;
+    }
+  }
+  &__danger {
+    @apply bg-white border text-red-400 border-red-500 flex-shrink-0 h-12 text-white px-5 rounded flex items-center justify-center mx-1;
+    &:hover {
+      @apply bg-red-300 text-white;
+    }
+  }
+}
+.actions {
+  input[type="submit"] {
+    @extend .btn__primary;
+  }
+}
