@@ -23,16 +23,21 @@ class EmployeesController < ApplicationController
 
   # POST /employees or /employees.json
   def create
-    @employee = Employee.new(employee_params)
-    @employee = assign_employee_creator(@employee, current_user)
-    respond_to do |format|
-      if @employee.save
-        format.html { redirect_to @employee, notice: "Employee was successfully created." }
-        format.json { render :show, status: :created, location: @employee }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
+    begin
+      @employee = Employee.new(employee_params)
+      @employee = assign_employee_creator(@employee, current_user)
+      respond_to do |format|
+        if @employee.save
+          format.html { redirect_to @employee, notice: "Employee was successfully created." }
+          format.json { render :show, status: :created, location: @employee }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @employee.errors, status: :unprocessable_entity }
+        end
       end
+    rescue ActiveRecord::RecordNotUnique
+      flash[:msg] = "El email debe ser unico"
+      redirect_to new_employee_path
     end
   end
 
