@@ -1,0 +1,14 @@
+.card {
+  @apply bg-blue-400 my-2 py-8 px-16 border border-blue-400 rounded-lg;
+  &__title {
+    @apply flex items-center justify-center text-white;
+  }
+  &__button {
+    &--round {
+      @apply mx-1 transition duration-300 rounded-full bg-gray-900 h-8 text-white flex justify-center items-center w-8;
+      &:hover {
+        @apply bg-white border border-gray-900 text-gray-900;
+      }
+    }
+  }
+}

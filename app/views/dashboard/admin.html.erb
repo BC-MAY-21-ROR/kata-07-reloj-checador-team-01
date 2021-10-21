@@ -1,0 +1,40 @@
+<%= content_for :title do %>
+  <h1>Admin Dashboard</h1>
+<% end %>
+<%= content_for :primary_content do %>
+  <div class="card flex">
+    <div class="w-2/4 card__title">
+      <h3>Employees</h3>
+    </div>
+    <div class="w-2/4 flex">
+      <%= link_to new_employee_path, class: 'card__button--round' do %>
+        +
+      <% end %>
+      <%= link_to employees_path, class: 'card__button--round' do %>
+        =
+      <% end %>
+    </div>
+  </div>
+  <div class="card flex">
+    <div class="w-2/4 card__title">
+      <h3>Stores</h3>
+    </div>
+    <div class="w-2/4 flex">
+      <%= link_to new_company_path, class: 'card__button--round' do %>
+        +
+      <% end %>
+      <%= link_to companies_path, class: 'card__button--round' do %>
+        =
+      <% end %>
+    </div>
+  </div>
+  <div class="card flex flex-col">
+    <h3>Reports</h3>
+    <div class="actions">
+      <%= link_to 'Attendances by Day', "#", class: 'btn btn__primary my-1' %>
+      <%= link_to 'Check in/out time by month', "#", class: 'btn btn__primary my-1' %>
+      <%= link_to 'Absences', "#", class: 'btn btn__secondary my-1' %>
+    </div>
+  </div>
+<% end %>
+<%= render 'dashboard_layout' %>
