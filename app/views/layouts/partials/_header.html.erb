@@ -4,11 +4,19 @@
       <%= link_to root_path, class: 'text-2xl text-blue-500' do %>
         <%= render_svg 'check-mobile', styles:'w-36' %>
       <% end %>
-      <% if user_signed_in? %>
-        <%= button_to "Logout", destroy_user_session_path, method: :delete, class:'p-3 outline-none focus:outline-none border  bg-transparent text-red-300 cursor-pointer border-red-300 hover:bg-red-300 hover:text-white transition duration-200 ease-in-out'  %>
-      <% else %>
-         <%= link_to 'Login', new_user_session_path, class: 'p-3 border outline-none focus:outline-none bg-transparent text-blue-300 border-blue-300 hover:bg-blue-300 hover:text-white transition duration-200 ease-in-out', method: 'delete', confirm: 'Sure?', type:'submit' %>
-      <% end %>
+
+      <div class="flex">
+        <% if user_signed_in? %>
+          <% unless !current_user.superadmin_role? %>
+            <%= link_to dashboard_path, class: 'btn btn__secondary' do %>
+              DASHBOARD
+            <% end %>
+          <% end %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn__secondary ml-4' %>
+        <% else %>
+          <%= link_to 'Login', new_user_session_path, class: 'p-3 border outline-none focus:outline-none bg-transparent text-blue-300 border-blue-300 hover:bg-blue-300 hover:text-white transition duration-200 ease-in-out' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </header>

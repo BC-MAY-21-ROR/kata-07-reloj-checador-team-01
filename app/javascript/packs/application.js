@@ -1,3 +1,4 @@
+require("@rails/ujs").start();
 import "channels"
 import "./applications.scss"
 import "./components/_field.scss"
