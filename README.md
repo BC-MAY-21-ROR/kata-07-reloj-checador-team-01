@@ -59,15 +59,22 @@ _Crear un archivo .env el cual contenga los datos correspondientes a tu base de 
 
 ### Creacion de la base de datos.
 
-_EJecutar el comando:_
+_Ejecutar el comando:_
 
 ```
 rails db:create
 ```
 
+### Creacion de las migraciones de las tablas creadas.
+
+_Ejecutar el comando:_
+```
+rails db:migrate
+```
+
 ### Instalación de las gemas mediante el uso de Bundle.
 
-_EJecutar el comando:_
+_Ejecutar el comando:_
 
 ```
 bundle install
@@ -75,7 +82,7 @@ bundle install
 
 ### Instalación de las dependencias necesarias.
 
-_EJecutar el comando:_
+_Ejecutar el comando:_
 
 ```
 yarn
@@ -83,7 +90,7 @@ yarn
 
 ### Ejecución del webpack.
 
-_EJecutar el comando:_
+_Ejecutar el comando:_
 
 ```
 ./bin/webpack-dev-server
