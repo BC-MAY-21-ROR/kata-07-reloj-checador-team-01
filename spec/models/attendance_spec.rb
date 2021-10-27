@@ -8,8 +8,8 @@ RSpec.describe Attendance, type: :model do
   before :each do
     wrong_private_number = 4122
     private_number = employee.private_number
-    @employee_finded = Employee.find_by_number(private_number)
-    @employee_not_finded = Employee.find_by_number(wrong_private_number)
+    @employee_finded = Employee.find_by private_number: private_number
+    @employee_not_finded = Employee.find_by private_number: wrong_private_number 
   end
 
   it 'employee should exist for attendance creation' do
@@ -52,4 +52,45 @@ RSpec.describe Attendance, type: :model do
     attendance_for_employee_finded = Attendance.find_by_employee(id)
     expect(attendance_for_employee_finded).to be_nil
   end
+  
+  it 'it create an attendance for employeee and Check In Success' do 
+    @attendance = Attendance.attendance_check_in_manage(@employee_finded)
+    expect(@attendance[0]).to eq("Check in successs")
+    expect(@employee_finded.attendances.today_attendances.exists?).to eq(true)
+  end
+
+  it 'it doesnt exist attendances for an employee' do 
+    @attendances = @employee_finded.attendances.today_attendances.exists?
+    expect(@attendances).to eq(false)
+  end
+
+  it 'it create an attendance for employee and later notify is already check in' do 
+    @attendance = Attendance.attendance_check_in_manage(@employee_finded)
+    expect(@attendance[0]).to eq("Check in successs")
+    expect(@employee_finded.attendances.today_attendances.exists?).to eq(true)
+    @attendance = Attendance.attendance_check_in_manage(@employee_finded)
+    expect(@attendance[0]).to eq("Check in already done")
+  end
+
+  it 'it create a notify for employee not check in' do 
+    @attendance = Attendance.attendance_check_out_manage(@employee_finded)
+    expect(@attendance[0]).to eq("You need to check in first")
+    expect(@employee_finded.attendances.today_attendances.exists?).to eq(false)
+  end
+
+  it 'it doesnt exist check out for an attendance' do 
+    @attendances = @employee_finded.attendances.today_attendances.exists?
+    expect(@attendances).to eq(false)
+  end
+
+  it 'it create a check out for an attendance and later notify is already check out' do 
+    @attendance_check_in = Attendance.attendance_check_in_manage(@employee_finded)
+    @attendance_check_out = Attendance.attendance_check_out_manage(@employee_finded)
+    expect(@attendance_check_in[0]).to eq("Check in successs")
+    expect(@attendance_check_out[0]).to eq("Check out success")
+    expect(@employee_finded.attendances.today_attendances.exists?).to eq(true)
+    @attendance_check_out = Attendance.attendance_check_out_manage(@employee_finded)
+    expect(@attendance_check_out[0]).to eq("Check out already done")
+  end
+
 end
