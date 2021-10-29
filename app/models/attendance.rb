@@ -19,11 +19,13 @@ class Attendance < ApplicationRecord
     check_in_time = self.check_in.to_time
     check_out_time = self.check_out.to_time
     total_time = (check_out_time - check_in_time)
-    total_time
+    time = Time.at(total_time).strftime("%M:%S")
   end
 
   def self.find_by_employee(id)
     self.find_by(employee_id: id)
+    t = (check_out_time - check_in_time)
+    (t / 1.hours).to_i
   end
 
   def set_check_in

@@ -1,0 +1,21 @@
+<%= content_for :primary_content do %>
+<h1 class="text-center text-2xl bold my-5">Date Attendace: <%= Date.today %></h1>
+<div class="divide-y divide-blue-300 grid grid-cols-1">
+   <div class="py-5 grid grid-cols-4 gap-2 bg-gray-500 text-white">
+      <div class="text-center px-5">Employee:</div>
+      <div class="text-center px-5">Check In:</div>
+      <div class="text-center px-5">Check Out:</div>
+      <div class="text-center px-5">working Time:</div>
+    </div>
+  <% @attendances.each do |attendance| %>
+    <div class="py-5 my-2 grid grid-cols-4 gap-2">
+      <div> <%= attendance.employee.name %></div>
+      <div> <%= attendance.check_in.strftime("%I:%M %p") %></div>
+      <div> <%= attendance.check_out ? attendance.check_out.strftime("%I:%M %p") : 'Still working' %></div>
+      <div> <%= attendance.check_out ? attendance.total_working_time : 'Still working' %></div>
+    </div>
+  <% end %>
+</div>
+
+<% end %>
+<%= render 'dashboard_layout' %>
