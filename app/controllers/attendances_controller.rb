@@ -1,6 +1,23 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[ show edit update destroy ]
-  include AttendancesHelper
+  before_action :set_employee, only: %i[ check_in check_out ]
+
+  # POST /check-in
+  def check_in
+    @attendance = Attendance.attendance_check_in_manage(@employee)
+    return render json: {"message": @attendance }, status: :accepted
+  end
+  # GET /attendances-today
+  def today 
+    @attendances = Attendance.today_attendances
+  end
+
+  # POST /check-out
+  def check_out
+    @attendance = Attendance.attendance_check_out_manage(@employee)
+    return render json: {"message": @attendance }, status: :accepted
+  end
+
   # GET /attendances or /attendances.json
   def index
     @attendances = Attendance.all
@@ -21,13 +38,11 @@ class AttendancesController < ApplicationController
 
   # POST /attendances or /attendances.json
   def create
-    @attendance = Attendance.new(attendance_params)
+    @attendance = current_user.attendances.new(attendance_params)
     respond_to do |format|
       if @attendance.save
-        format.html { redirect_to @attendance, notice: "Attendance was successfully created." }
         format.json { render :show, status: :created, location: @attendance }
       else
-        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
@@ -36,14 +51,9 @@ class AttendancesController < ApplicationController
   # PATCH/PUT /attendances/1 or /attendances/1.json
   def update
     respond_to do |format|
-      if @attendance
-        @attendance.set_check_out
-        @attendance.update(attendance_params)
-        format.html { redirect_to @attendance, notice: "Attendance was successfully updated." }
+      if @attendance.update(attendance_params)
         format.json { render :show, status: :ok, location: @attendance }
       else
-        byebug
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
@@ -64,8 +74,16 @@ class AttendancesController < ApplicationController
       @attendance = Attendance.find(params[:id])
     end
 
+    def set_employee
+      @employee = Employee.find_by private_number: params[:private_number]
+      unless @employee.present?
+        return render json: {"message": "The user with these private number does not exist"}, status: :unprocessable_entity
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def attendance_params
       params.require(:attendance).permit(:check_in, :check_out, :employee_id, :user_id)
     end
+
 end
