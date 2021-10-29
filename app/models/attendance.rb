@@ -1,7 +1,7 @@
 class Attendance < ApplicationRecord
   attr_accessor :set_check_out
   belongs_to :employee
-  belongs_to :user
+
   before_create :set_check_in
   def set_check_in
     self.check_in = Time.now

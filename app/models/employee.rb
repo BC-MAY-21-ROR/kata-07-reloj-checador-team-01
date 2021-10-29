@@ -7,5 +7,6 @@ class Employee < ApplicationRecord
 
   def self.find_by_number(private_number)
     employee = self.find_by(private_number: private_number)
+    employee
   end
 end

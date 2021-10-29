@@ -66,6 +66,6 @@ class AttendancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def attendance_params
-      params.require(:attendance).permit(:check_in, :check_out, :employee_id, :user_id)
+      params.require(:attendance).permit(:check_in, :check_out, :employee_id)
     end
 end
