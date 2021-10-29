@@ -1,6 +1,6 @@
 class Attendance < ApplicationRecord
   belongs_to :employee
-  belongs_to :user
+
   before_create :set_check_in
   scope :today_attendances, -> { where("created_at >= ?", DateTime.now.beginning_of_day) } 
   scope :without_check_out, -> { where(check_out: nil) }

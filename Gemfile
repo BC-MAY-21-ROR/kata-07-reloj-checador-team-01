@@ -24,7 +24,7 @@ gem 'react-rails', '~> 2.6', '>= 2.6.1'
 gem 'inline_svg'
 
 gem 'paranoia'
-gem 'cancancan' 
+gem 'cancancan'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'devise'
@@ -32,9 +32,10 @@ gem 'devise'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
   gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use rubocop as the app server
   gem 'rubocop', require: false
   gem 'rubycritic', require: false
@@ -59,7 +60,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,7 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
-  
+  describe 'associations' do
+    it { should belong_to(:user) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:private_number) }
+  end
+
   let(:user) { User.create(email:'dumy2@example.com', password:'1234567', superadmin_role: true, user_role: false) }
   subject { Employee.new(name: 'Jose Estrada', email:'dumy@example.com', private_number: 4123, user_id: user.id) }
   before :each do 
