@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :employees
-  resources :attendances
+  resources :attendances, :only => [:check_in, :check_out]
   resources :companies
   #For skipping the logic registration to users
   devise_for :users, :skip => [:registrations]
@@ -15,5 +15,10 @@ Rails.application.routes.draw do
     get 'things', to: 'things#index'
   end
   get '/dashboard', to:'dashboard#admin'
+  #allow make a post request from axios and register user check in
+  post '/check-in', to: 'attendances#check_in'
+  #allow make a post request from axios and register user check out
+  post '/check-out',to: 'attendances#check_out'
+
 
 end
