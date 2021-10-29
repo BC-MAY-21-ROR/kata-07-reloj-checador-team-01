@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { initialValues, FormCheckSchema } from "./CheckInSchema";
 
 const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
+  const [buttonAction, setbuttonAction] = useState(null);
+
   const onsubmit = (values, { resetForm }) => {
+    if (buttonAction) {
+    } else {
+    }
+
     resetForm({});
   };
 
@@ -32,12 +38,18 @@ const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
         <div className="flex flex-col md:flex md:flex-row">
           <button
             className="mb-4 h-10 rounded-md bg-blue-400 text-white md:w-3/5 md:h-12 md:mb-6"
+            onClick={() => {
+              setbuttonAction(true);
+            }}
             type="submit"
           >
             CHECK IN
           </button>
           <button
             className="h-10 rounded-md bg-blue-400 text-white md:ml-8  md:w-3/5 md:h-12"
+            onClick={() => {
+              setbuttonAction(false);
+            }}
             type="submit"
           >
             CHECK OUT
