@@ -1,0 +1,20 @@
+<%= content_for :primary_content do %>
+  <h1 class="text-center text-2xl bold my-5">Report for month: <%= Time.now.strftime("%B") %></h1>
+  <div class="divide-y divide-blue-300 grid grid-cols-1">
+    <div class="py-5 grid grid-cols-2 gap-2 bg-gray-500 text-white">
+      <div class="text-center px-5">Employee:</div>
+      <div class="text-center px-5">AVG Time Check In/Check Out:</div>
+    </div>
+    <div class="py-5 my-2 grid grid-cols-2 gap-2">
+      <% @employees.each do |employee| %>
+        <%if employee.attendances.attendances_by_month_complete.exists? %>
+          <div> <%= employee.name %></div>
+          <div>
+            <%= employee.get_total_avg_time %>
+          </div>
+        <%end%>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%= render 'dashboard_layout' %>

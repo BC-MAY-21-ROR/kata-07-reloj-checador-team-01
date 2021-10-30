@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   post '/check-in', to: 'attendances#check_in'
   #allow make a post request from axios and register user check out
   post '/check-out',to: 'attendances#check_out'
-
-
+  #allow get the view  of the average time of check in and check out in a month for employees
+  get '/attendances-avg-time',to: 'employees#avg_time'
 end

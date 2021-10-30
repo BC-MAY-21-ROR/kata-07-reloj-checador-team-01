@@ -8,6 +8,7 @@ const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
   const [checkInButtonEnabled, setcheckInButtonEnabled] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  
   const checkInEmployee = secret => {
     axios.post('/check-in', {
       private_number: secret
@@ -21,12 +22,13 @@ const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
     }
     )
   }
+
   const checkOutEmployee = secret => {
     axios.post('/check-out', {
       private_number: secret
     }).then((res) => {
-      const { message } = res.data[0];
-      setSuccessMessage(message)
+      const { message } = res.data;
+      setSuccessMessage(message[0]);
     }
     ).catch((err) => {
       const { message } = err.response.data;
@@ -34,9 +36,9 @@ const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
     }
     )
   }
-    
+
   const onsubmit = (values, { resetForm }) => {
-     //Token to prevent CSRF Attacks
+    //Token to prevent CSRF Attacks
     const token = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = token
     if (!values.code) return;
@@ -50,7 +52,7 @@ const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
     setErrorMessage('');
     resetForm({});
   };
-    
+
   return (
     <>
       {errorMessage !== '' && <Toastify greeting={errorMessage}></Toastify>}
@@ -69,29 +71,29 @@ const Checkin = ({ authenticity_token, checkIn, checkOut }) => {
             name="code"
             placeholder="Secret Code"
           />
-        <div className="flex flex-col md:flex md:flex-row">
-          <button
-            className="mb-4 h-10 rounded-md bg-blue-400 text-white md:w-3/5 md:h-12 md:mb-6"
-            onClick={() => {
-             setcheckInButtonEnabled(true);
-            }}
-            type="submit"
-          >
-            CHECK IN
-          </button>
-          <button
-            className="h-10 rounded-md bg-blue-400 text-white md:ml-8  md:w-3/5 md:h-12"
-            onClick={() => {
-              setcheckInButtonEnabled(false);
-            }}
-            type="submit"
-          >
-            CHECK OUT
-          </button>
-        </div>
-      </Form>
-    </Formik>
-   </>
+          <div className="flex flex-col md:flex md:flex-row">
+            <button
+              className="mb-4 h-10 rounded-md bg-blue-400 text-white md:w-3/5 md:h-12 md:mb-6"
+              onClick={() => {
+                setcheckInButtonEnabled(true);
+              }}
+              type="submit"
+            >
+              CHECK IN
+            </button>
+            <button
+              className="h-10 rounded-md bg-blue-400 text-white md:ml-8  md:w-3/5 md:h-12"
+              onClick={() => {
+                setcheckInButtonEnabled(false);
+              }}
+              type="submit"
+            >
+              CHECK OUT
+            </button>
+          </div>
+        </Form>
+      </Formik>
+    </>
   );
 };
 export default Checkin;
