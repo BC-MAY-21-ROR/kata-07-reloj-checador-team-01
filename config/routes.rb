@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   #allow make a post request from axios and register user check out
   post '/check-out',to: 'attendances#check_out'
 
+  get '/attendances-today', to: 'attendances#today'
 
 end
