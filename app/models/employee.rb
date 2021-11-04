@@ -7,6 +7,16 @@ class Employee < ApplicationRecord
   validates :private_number, numericality: { only_integer: true }
   scope :with_private_number, ->(number) { where(private_number: number) }
 
+  def absences
+    attendances = self.attendances.count
+    month_dates = self.current_month_days_until_now
+    month_dates - attendances
+  end
+
+  def current_month_days_until_now
+    days_until_now = Time.new.day
+  end
+
   def get_total_avg_time
     total_working_time = 0
     self.attendances.attendances_by_month_complete.includes(:employee).each do |attendance|

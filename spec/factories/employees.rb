@@ -8,5 +8,5 @@ FactoryBot.define do
       create_list :attendance, 2, employee: employee
     end
   end
-  
+
 end

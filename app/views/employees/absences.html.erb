@@ -1,0 +1,21 @@
+<%= content_for :primary_content do %>
+  <h1 class="text-center text-2xl bold my-5">Report for month: <%= Time.now.strftime("%B") %></h1>
+  <div class="divide-y divide-blue-300 grid grid-cols-1">
+    <div class="py-5 grid grid-cols-2 gap-2 bg-gray-900 text-white">
+      <div class="text-center px-5">Employee:</div>
+      <div class="text-center px-5">Absenses by month:</div>
+    </div>
+    <div class="py-5 my-2 grid grid-cols-2 gap-2">
+      <% @employees.each do |employee| %>
+        <% absences = employee.absences %>
+        <%if absences > 0 %>
+          <div> <%= employee.name %></div>
+          <div class="text-center">
+            <%= pluralize_without_count(absences, 'Day', ": #{absences}") %>
+          </div>
+        <%end%>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%= render 'dashboard_layout' %>
