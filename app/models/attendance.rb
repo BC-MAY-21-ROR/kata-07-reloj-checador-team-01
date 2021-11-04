@@ -6,11 +6,18 @@ class Attendance < ApplicationRecord
   scope :without_check_out, -> { where(check_out: nil) }
   scope :complete, -> { where.not(check_out: nil) }
   scope :attendances_by_month, -> (begin_of_month = DateTime.now.beginning_of_month , end_of_month = DateTime.now.end_of_month) {where("created_at >= ? AND created_at <=?",begin_of_month,end_of_month)}
-  
+  scope :by_date, -> (sdate,edate) { where( "created_at >= ? AND created_at <= ? ", sdate, edate) }
   def self.attendances_by_month_complete
     self.attendances_by_month.complete.where("check_out >= check_in")
   end
 
+  def attendance_date 
+    self.created_at
+  end
+
+  def self.current_month_dates
+    (DateTime.now.beginning_of_month.beginning_of_day..DateTime.now.end_of_month.end_of_day).to_a
+  end
   def self.messages
     @messages = []
   end
@@ -20,6 +27,15 @@ class Attendance < ApplicationRecord
     check_out_time = self.check_out.to_time
     total_time = (check_out_time - check_in_time)
     time = Time.at(total_time).strftime("%M:%S")
+  end
+  def total_working_human_time
+    check_in_time = self.check_in.to_time
+    check_out_time = self.check_out.to_time
+    total_time = (check_out_time - check_in_time)
+    minutes = (total_time / 60 ).to_i
+    hours = minutes / 60
+    rest = minutes % 60
+    "#{hours} hours #{rest} minutes"
   end
 
   def self.find_by_employee(id)
@@ -36,7 +52,6 @@ class Attendance < ApplicationRecord
     employee_attendances = employee.attendances
     return self.messages << "Check in already done" unless !employee_attendances.today_attendances.exists?
     attendance = employee_attendances.create
-    attendance.user_id = employee.user_id
     return self.messages << "Check in successs" if attendance.save
   end
 

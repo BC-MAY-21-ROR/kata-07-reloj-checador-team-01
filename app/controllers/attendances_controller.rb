@@ -7,6 +7,7 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.attendance_check_in_manage(@employee)
     return render json: {"message": @attendance }, status: :accepted
   end
+
   # GET /attendances-today
   def today 
     @attendances = Attendance.today_attendances
@@ -73,7 +74,7 @@ class AttendancesController < ApplicationController
     def set_attendance
       @attendance = Attendance.find(params[:id])
     end
-
+    #find an employee by private number and set its object to @employee variable
     def set_employee
       @employee = Employee.find_by private_number: params[:private_number]
       unless @employee.present?
