@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   get '/attendances-avg-time',to: 'employees#avg_time'
 
   get '/attendances-today', to: 'attendances#today'
+  get '/absences', to: 'employees#absences'
 
 end

@@ -2,22 +2,20 @@ class Attendance < ApplicationRecord
   belongs_to :employee
 
   before_create :set_check_in
-  scope :today_attendances, -> { where("created_at >= ?", DateTime.now.beginning_of_day) } 
+  scope :today_attendances, -> { where("created_at >= ?", DateTime.now.beginning_of_day) }
   scope :without_check_out, -> { where(check_out: nil) }
   scope :complete, -> { where.not(check_out: nil) }
   scope :attendances_by_month, -> (begin_of_month = DateTime.now.beginning_of_month , end_of_month = DateTime.now.end_of_month) {where("created_at >= ? AND created_at <=?",begin_of_month,end_of_month)}
   scope :by_date, -> (sdate,edate) { where( "created_at >= ? AND created_at <= ? ", sdate, edate) }
+
   def self.attendances_by_month_complete
     self.attendances_by_month.complete.where("check_out >= check_in")
   end
 
-  def attendance_date 
+  def attendance_date
     self.created_at
   end
 
-  def self.current_month_dates
-    (DateTime.now.beginning_of_month.beginning_of_day..DateTime.now.end_of_month.end_of_day).to_a
-  end
   def self.messages
     @messages = []
   end
@@ -25,9 +23,9 @@ class Attendance < ApplicationRecord
   def total_working_time
     check_in_time = self.check_in.to_time
     check_out_time = self.check_out.to_time
-    total_time = (check_out_time - check_in_time)
-    time = Time.at(total_time).strftime("%M:%S")
+    check_out_time - check_in_time
   end
+
   def total_working_human_time
     check_in_time = self.check_in.to_time
     check_out_time = self.check_out.to_time
